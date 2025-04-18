@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
   CustomTextField({super.key, 
     required this.text,
     required this.icon,
-    this.margin = const EdgeInsets.only(top: 20, left: 15, right: 15),
+    this.margin = const EdgeInsets.only(top: 10, left: 5, right: 5),
   });
 
   @override
@@ -23,6 +23,10 @@ class CustomTextField extends StatelessWidget {
           topLeft: Radius.circular(15),
           bottomRight: Radius.circular(15),
         ),
+        border: Border.all(
+          color: Colors.black,
+          width: 0.5,
+        )
       ),
       child: TextFormField(
         decoration: InputDecoration(

@@ -14,13 +14,22 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45,
+      height: 50,
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(bottom: 20, left: 18, right: 18),
+      margin: EdgeInsets.only(bottom: 20, left: 5, right: 5),
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: color),
+          backgroundColor: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(
+              color: Colors.black,
+              width: 0.5,
+            )
+          )
+          ),
+          
         child: Text(
           text,
           style: TextStyle(

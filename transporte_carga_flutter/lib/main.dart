@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/login/LoginPage.dart';
+import 'package:transporte_carga_flutter/src/presentation/pages/authentication/register/RegisterPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: LoginPage()
+      initialRoute: 'login',
+      routes: {
+        'login': (BuildContext context) => LoginPage(),
+        'register': (BuildContext context) => RegisterPage(),
+      },
     );
   }
 }
