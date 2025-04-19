@@ -5,18 +5,20 @@ class CustomButton extends StatelessWidget {
   String text;
   Color color;
   Color textColor;
+  EdgeInsetsGeometry margin;
 
   CustomButton({super.key, 
   required this.text,
   this.color = Colors.white,
-  this.textColor = Colors.black});
+  this.textColor = Colors.black,
+  this.margin = const EdgeInsets.only(bottom: 10, left: 5, right: 5), });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 50,
       width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(bottom: 20, left: 5, right: 5),
+      margin: margin,
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(

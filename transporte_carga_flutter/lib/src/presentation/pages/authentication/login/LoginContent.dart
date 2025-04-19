@@ -16,6 +16,7 @@ class LoginContent extends StatelessWidget {
           //padding: EdgeInsets.only(left: 12),
         ),
         Container(
+          height: MediaQuery.of(context).size.height,
           margin: EdgeInsets.only(left: 20, top: 40, bottom: 40, right: 20),
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -31,50 +32,63 @@ class LoginContent extends StatelessWidget {
           ),
           child: Container(
             margin: EdgeInsets.only(left: 25, right: 25),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 30),
-                _textWelcome(
-                  'TRAXXO',
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
-                _textWelcome(
-                  'CARGA SEGURA Y A TIEMPO...',
-                  fontSize: 20,
-                  fontWeight: FontWeight.normal,
-                ),
-                _imageLogo(),
-                _textWelcome(
-                  'Iniciar Sesión',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-                CustomTextField(text: 'Email', icon: Icons.email_outlined),
-                CustomTextField(text: 'Password', icon: Icons.lock_outline),
-                SizedBox(height: 10),
-                Center(
-                  child: Center(
-                    child: _textWelcome(
-                      '¿Olvidaste tu Contraseña?',
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 30),
+                  _text(
+                    'TRAXXO',
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
                   ),
-                ),
-                Spacer(),
-                CustomButton(text: 'Iniciar Sesion'),
-                _textDontHaveAccount(context),
-                SizedBox(height: 10),
-                Center(
-                  child: _iconGmail(),
-                ),
-                SizedBox(height: 30),
-              ],
+                  _text(
+                    'CARGA SEGURA Y A TIEMPO...',
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal,
+                  ),
+                  _imageLogo(),
+                  _text(
+                    'Iniciar Sesión',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  CustomTextField(text: 'Email', icon: Icons.email_outlined),
+                  CustomTextField(text: 'Password', icon: Icons.lock_outline, margin: EdgeInsets.only( bottom: 10, top: 10, left: 5, right: 5),),
+                  _textRecoverAccount(context),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                  CustomButton(text: 'Iniciar Sesion'),
+                  _textDontHaveAccount(context),
+                  Center(
+                    child: _iconGmail(),
+                  ),
+                  SizedBox(height: 30),
+                ],
+              ),
             ),
           ),
         ),
+      ],
+    );
+  }
+
+  Widget _textRecoverAccount(BuildContext context){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: (){
+            Navigator.pushNamed(context, 'recover');
+          },
+          child: Text(
+            '¿Olvidaste tu contraseña?',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.normal,
+              fontSize: 15,
+            ),
+          ),
+        )
       ],
     );
   }
@@ -105,7 +119,7 @@ class LoginContent extends StatelessWidget {
     );
   }
 
-  Widget _textWelcome(
+  Widget _text(
     String text, {
     double fontSize = 24,
     FontWeight fontWeight = FontWeight.bold,
@@ -130,12 +144,13 @@ class LoginContent extends StatelessWidget {
 
   Widget _iconGmail() {
     return Container(
+      margin: EdgeInsets.only(top: 10),
       width: 40,
       height: 40,
       decoration: BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.grey, width: 1),
+        border: Border.all(color: Colors.black, width: 0.5),
       ),
       child: Center(
         child: Icon(

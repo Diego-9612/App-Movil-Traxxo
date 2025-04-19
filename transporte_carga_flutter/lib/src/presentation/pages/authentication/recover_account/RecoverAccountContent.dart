@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:transporte_carga_flutter/src/presentation/widgets/CustomButton.dart';
 import 'package:transporte_carga_flutter/src/presentation/widgets/CustomTextFieldOpacity.dart';
 
-class RegisterContent extends StatelessWidget {
-  const RegisterContent({super.key});
+class RecoverAccountContent extends StatelessWidget {
+  const RecoverAccountContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,33 +36,22 @@ class RegisterContent extends StatelessWidget {
                   children: [
                     _imageBanner(),
                     _text(
-                    'Registro',
+                    'Recupera tu cuenta',
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
+                  _text(
+                    'Introduce tu email o numero movil para buscar tu cuenta',
+                    fontSize: 15,
+                    fontWeight: FontWeight.normal
+                  ),
                     CustomTextFieldOpacity(
-                      text: 'Nombre',
+                      text: 'Email o numero movil',
                       icon: Icons.person_outlined
                     ),
-                    CustomTextFieldOpacity(
-                      text: 'Apellidos', 
-                      icon: Icons.person_2_outlined,
-                    ),
-                    CustomTextFieldOpacity(
-                      text: 'Email', 
-                      icon: Icons.email_outlined,
-                    ),
-                    CustomTextFieldOpacity(
-                      text: 'Telefono', 
-                      icon: Icons.phone_outlined,
-                    ),
-                    CustomTextFieldOpacity(
-                      text: 'Contraseña', 
-                      icon: Icons.lock_outline,
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.12),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.35),
                     CustomButton(
-                      text: 'Crear Usuario',
+                      text: 'Buscar',
                       ),
                       _textAlreadyHaveAccount(context),
                       Center(
@@ -113,20 +102,7 @@ class RegisterContent extends StatelessWidget {
     );
   }
   
-  /*
-  Widget _imageBackground(BuildContext context){
-    return Container(
-      alignment: Alignment.bottomCenter,
-      margin: EdgeInsets.only(bottom: 50),
-      child: Image.asset(
-        'assets/img/destination.png',
-        width: MediaQuery.of(context).size.width * 0.6,
-        height: MediaQuery.of(context).size.height * 0.4,
-        opacity: AlwaysStoppedAnimation(0.3),
-      ),
-    );
-  }
-  */ 
+  
 
 
   Widget _imageBanner(){

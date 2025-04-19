@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/login/LoginPage.dart';
+import 'package:transporte_carga_flutter/src/presentation/pages/authentication/recover_account/RecoverAccountPage.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/register/RegisterPage.dart';
 
 void main() {
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'login': (BuildContext context) => LoginPage(),
         'register': (BuildContext context) => RegisterPage(),
+        'recover': (BuildContext context) => RecoverAccountPage(),
       },
     );
   }

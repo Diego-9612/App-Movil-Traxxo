@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextFieldOpacity extends StatelessWidget {
+
   String text;
   IconData icon;
   EdgeInsetsGeometry margin;
 
-  CustomTextField({
-    super.key,
+  CustomTextFieldOpacity({super.key, 
     required this.text,
     required this.icon,
     this.margin = const EdgeInsets.only(top: 15, left: 5, right: 5),
@@ -18,20 +18,26 @@ class CustomTextField extends StatelessWidget {
       height: 50,
       margin: margin,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color.fromRGBO(255, 255, 255, 0.2),
       ),
       child: TextFormField(
         decoration: InputDecoration(
           label: Text(text),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.amber, width: 1),
+          focusedBorder:  OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.amber,
+              width: 1,
+            ),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(15),
               bottomRight: Radius.circular(15),
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black, width: 1),
+            borderSide: BorderSide(
+              color: Colors.black,
+              width: 1
+            ),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(15),
               bottomRight: Radius.circular(15),
