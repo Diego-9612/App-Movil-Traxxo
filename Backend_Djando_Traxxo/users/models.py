@@ -7,10 +7,13 @@ class User(models.Model):
     name = models.CharField(max_length=255)
     lastname = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20, unique=True)
     image = models.CharField(max_length=255, null=True, blank=False)
     password = models.CharField(max_length=255)
     notification_token = models.CharField(max_length=255, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'users'
 
