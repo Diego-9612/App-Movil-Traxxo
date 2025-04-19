@@ -45,12 +45,14 @@ class RecoverAccountContent extends StatelessWidget {
                     fontSize: 15,
                     fontWeight: FontWeight.normal
                   ),
-                    CustomTextFieldOpacity(
-                      text: 'Email o numero movil',
-                      icon: Icons.person_outlined
-                    ),
+                    //CustomTextFieldOpacity(
+                      //text: 'Email o numero movil',
+                      //icon: Icons.person_outlined,
+                      
+                    //),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.35),
                     CustomButton(
+                      onPressed: (){},
                       text: 'Buscar',
                       ),
                       _textAlreadyHaveAccount(context),

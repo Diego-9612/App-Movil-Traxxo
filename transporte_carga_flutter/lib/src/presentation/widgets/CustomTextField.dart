@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
+
   String text;
+  Function(String text) onChanged;
   IconData icon;
   EdgeInsetsGeometry margin;
+  String? Function(String?)? validator;
 
   CustomTextField({
     super.key,
     required this.text,
     required this.icon,
+    required this.onChanged,
     this.margin = const EdgeInsets.only(top: 15, left: 5, right: 5),
+    this.validator,
   });
 
   @override
@@ -21,6 +26,10 @@ class CustomTextField extends StatelessWidget {
         color: Colors.white,
       ),
       child: TextFormField(
+        onChanged: (text){
+          onChanged(text);
+        },
+        validator: validator,
         decoration: InputDecoration(
           label: Text(text),
           focusedBorder: OutlineInputBorder(

@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 class CustomTextFieldOpacity extends StatelessWidget {
 
   String text;
+  Function(String text) onChanged;
   IconData icon;
   EdgeInsetsGeometry margin;
+  String? Function(String?)? validator;
 
   CustomTextFieldOpacity({super.key, 
     required this.text,
     required this.icon,
+    required this.onChanged,
     this.margin = const EdgeInsets.only(top: 15, left: 5, right: 5),
+    this.validator,
   });
 
   @override
@@ -21,6 +25,10 @@ class CustomTextFieldOpacity extends StatelessWidget {
         color: Color.fromRGBO(255, 255, 255, 0.2),
       ),
       child: TextFormField(
+        onChanged: (text){
+          onChanged(text);
+        },
+        validator: validator,
         decoration: InputDecoration(
           label: Text(text),
           focusedBorder:  OutlineInputBorder(

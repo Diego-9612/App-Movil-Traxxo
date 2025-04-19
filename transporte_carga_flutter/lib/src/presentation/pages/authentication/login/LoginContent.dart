@@ -1,83 +1,124 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transporte_carga_flutter/src/presentation/pages/authentication/login/bloc/LoginBloc.dart';
+import 'package:transporte_carga_flutter/src/presentation/pages/authentication/login/bloc/LoginEvent.dart';
+import 'package:transporte_carga_flutter/src/presentation/pages/authentication/login/bloc/LoginState.dart';
+import 'package:transporte_carga_flutter/src/presentation/utils/BlocFormItem.dart';
 import 'package:transporte_carga_flutter/src/presentation/widgets/CustomButton.dart';
 import 'package:transporte_carga_flutter/src/presentation/widgets/CustomTextField.dart';
 
 class LoginContent extends StatelessWidget {
-  const LoginContent({super.key});
+  LoginState? state;
+
+  LoginContent(this.state, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          color: Colors.white,
-          //padding: EdgeInsets.only(left: 12),
-        ),
-        Container(
-          height: MediaQuery.of(context).size.height,
-          margin: EdgeInsets.only(left: 20, top: 40, bottom: 40, right: 20),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 255, 255, 255),
-                Color.fromARGB(255, 255, 255, 255),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.black, width: 0.5),
+    return Form(
+      key: state?.formKey,
+      child: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.white,
+            //padding: EdgeInsets.only(left: 12),
           ),
-          child: Container(
-            margin: EdgeInsets.only(left: 25, right: 25),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 30),
-                  _text(
-                    'TRAXXO',
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  _text(
-                    'CARGA SEGURA Y A TIEMPO...',
-                    fontSize: 20,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  _imageLogo(),
-                  _text(
-                    'Iniciar Sesión',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  CustomTextField(text: 'Email', icon: Icons.email_outlined),
-                  CustomTextField(text: 'Password', icon: Icons.lock_outline, margin: EdgeInsets.only( bottom: 10, top: 10, left: 5, right: 5),),
-                  _textRecoverAccount(context),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.2),
-                  CustomButton(text: 'Iniciar Sesion'),
-                  _textDontHaveAccount(context),
-                  Center(
-                    child: _iconGmail(),
-                  ),
-                  SizedBox(height: 30),
+          Container(
+            height: MediaQuery.of(context).size.height,
+            margin: EdgeInsets.only(left: 20, top: 40, bottom: 40, right: 20),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Color.fromARGB(255, 255, 255, 255),
+                  Color.fromARGB(255, 255, 255, 255),
                 ],
+              ),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Colors.black, width: 0.5),
+            ),
+            child: Container(
+              margin: EdgeInsets.only(left: 25, right: 25),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 30),
+                    _text('TRAXXO', fontSize: 30, fontWeight: FontWeight.bold),
+                    _text(
+                      'CARGA SEGURA Y A TIEMPO...',
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    _imageLogo(),
+                    _text(
+                      'Iniciar Sesión',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    CustomTextField(
+                      onChanged: (text) {
+                        context.read<LoginBloc>().add(
+                          EmailChanged(email: BlocFormItem(value: text)),
+                        );
+                      },
+                      validator: (value) {
+                        return state?.email.error;
+                      },
+                      text: 'Email',
+                      icon: Icons.email_outlined,
+                    ),
+                    CustomTextField(
+                      onChanged: (text) {
+                        context.read<LoginBloc>().add(
+                          PasswordChanged(password: BlocFormItem(value: text)),
+                        );
+                      },
+                      validator: (value) {
+                        return state?.password.error;
+                      },
+                      text: 'Password',
+                      icon: Icons.lock_outline,
+                      margin: EdgeInsets.only(
+                        bottom: 10,
+                        top: 10,
+                        left: 5,
+                        right: 5,
+                      ),
+                    ),
+                    _textRecoverAccount(context),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                    CustomButton(
+                      text: 'Iniciar Sesion',
+                      onPressed: () {
+                        if (state!.formKey!.currentState!.validate()) {
+                          context.read<LoginBloc>().add(FormSubmit());
+                        } else {
+                          print('El formulario no es valido');
+                        }
+                      },
+                    ),
+                    _textDontHaveAccount(context),
+                    Center(child: _iconGmail()),
+                    SizedBox(height: 30),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
-  Widget _textRecoverAccount(BuildContext context){
+  Widget _textRecoverAccount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
-          onTap: (){
+          onTap: () {
             Navigator.pushNamed(context, 'recover');
           },
           child: Text(
@@ -88,7 +129,7 @@ class LoginContent extends StatelessWidget {
               fontSize: 15,
             ),
           ),
-        )
+        ),
       ],
     );
   }
