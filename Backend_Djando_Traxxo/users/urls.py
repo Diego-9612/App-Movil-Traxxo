@@ -1,6 +1,8 @@
-from django.urls import path # type: ignore
+from django.urls import path
+from .views import update, updateWithImage
 
 urlpatterns = [
-    #path('', create),
+    path('/<id_user>', update),
+    path('/upload/<id_user>', updateWithImage),
     #path('/login', login)
 ]

@@ -1,9 +1,11 @@
 {
     "cSpell.words": [
+        "apload",
         "authenticationn",
         "BORRAR",
         "checkpw",
         "Djando",
+        "enviaron",
         "ERRORES",
         "EXITOSAS",
         "gensalt",
@@ -12,6 +14,7 @@
         "RESPUESTAS",
         "simplejwt",
         "traxxo",
+        "userhasroles",
         "válidos",
         "wxeysm"
     ]
