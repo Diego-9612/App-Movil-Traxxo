@@ -1,4 +1,4 @@
-from django.db import models # type: ignore
+from django.db import models 
 
 class UserHasRoles(models.Model):
     id_user = models.ForeignKey('users.User', on_delete=models.CASCADE, db_column="id_user")
