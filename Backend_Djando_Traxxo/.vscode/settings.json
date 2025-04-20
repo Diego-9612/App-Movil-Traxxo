@@ -1,12 +1,18 @@
 {
     "cSpell.words": [
+        "authenticationn",
         "BORRAR",
+        "checkpw",
         "Djando",
         "ERRORES",
         "EXITOSAS",
+        "gensalt",
+        "hashpw",
         "rbyrl",
         "RESPUESTAS",
+        "simplejwt",
         "traxxo",
+        "válidos",
         "wxeysm"
     ]
 }
