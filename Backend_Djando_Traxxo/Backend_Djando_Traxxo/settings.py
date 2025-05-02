@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+^e^p-@7wxeysm@#vvk)#8@rbyrl52oh6=5*vh!3vpo&86wrx-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-GLOBAL_IP = '192.168.100.43'
+GLOBAL_IP = '192.168.80.37'
 GLOBAL_HOST = ':3000'
 ALLOWED_HOSTS = [GLOBAL_IP]
 
@@ -44,18 +44,23 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'users', 
     'authenticationn', 
-    'roles'
+    'roles',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'Backend_Djando_Traxxo.urls'
 

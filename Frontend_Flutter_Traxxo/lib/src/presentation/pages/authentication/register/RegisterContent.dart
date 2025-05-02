@@ -197,7 +197,7 @@ class RegisterContent extends StatelessWidget {
         SizedBox(width: 7),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, 'login');
+            Navigator.pop(context);
           },
           child: Text(
             'Inicia Sesión',

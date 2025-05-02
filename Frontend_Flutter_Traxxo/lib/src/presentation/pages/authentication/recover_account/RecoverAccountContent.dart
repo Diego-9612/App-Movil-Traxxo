@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:transporte_carga_flutter/src/presentation/widgets/CustomButton.dart';
-import 'package:transporte_carga_flutter/src/presentation/widgets/CustomTextFieldOpacity.dart';
 
 class RecoverAccountContent extends StatelessWidget {
   const RecoverAccountContent({super.key});
