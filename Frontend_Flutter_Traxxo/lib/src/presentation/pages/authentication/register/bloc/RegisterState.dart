@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:transporte_carga_flutter/src/domain/models/User.dart';
+import 'package:transporte_carga_flutter/src/domain/utils/Resource.dart';
 import 'package:transporte_carga_flutter/src/presentation/utils/BlocFormItem.dart';
 
 class RegisterState extends Equatable {
@@ -9,6 +11,15 @@ class RegisterState extends Equatable {
   final BlocFormItem phone;
   final BlocFormItem password;
   final GlobalKey<FormState>? formKey;
+  final Resource? response;
+
+  toUser() => User(
+    name: name.value,
+    lastname: lastname.value,
+    email: email.value,
+    phone: phone.value,
+    password: password.value,
+    );
 
   const RegisterState({
     this.name = const BlocFormItem(error: 'Ingresa el nombre'),
@@ -17,6 +28,7 @@ class RegisterState extends Equatable {
     this.phone = const BlocFormItem(error: 'Ingresa el telefono'),
     this.password = const BlocFormItem(error: 'Ingresa el password'),
     this.formKey,
+    this.response
   });
 
   RegisterState copyWith({
@@ -27,6 +39,7 @@ class RegisterState extends Equatable {
     BlocFormItem? password,
     BlocFormItem? confirmPassword,
     GlobalKey<FormState>? formKey,
+    Resource? response
   }) {
     return RegisterState(
       name: name ?? this.name,
@@ -35,9 +48,10 @@ class RegisterState extends Equatable {
       phone: phone ?? this.phone,
       password: password ?? this.password,
       formKey: formKey,
+      response: response
     );
   }
 
   @override
-  List<Object?> get props => [name, lastname, email, phone, password];
+  List<Object?> get props => [name, lastname, email, phone, password, response];
 }

@@ -1,3 +1,4 @@
+import 'package:transporte_carga_flutter/src/domain/models/AuthResponse.dart';
 import 'package:transporte_carga_flutter/src/presentation/utils/BlocFormItem.dart';
 
 abstract class RegisterEvent {}
@@ -27,6 +28,11 @@ class PhoneChanged extends RegisterInitEvent {
 class PasswordChanged extends RegisterInitEvent {
   final BlocFormItem password;
   PasswordChanged({ required this.password });
+}
+
+class SaveUserSession extends RegisterInitEvent{
+  final AuthResponse authResponse;
+  SaveUserSession({ required this.authResponse });
 }
 
 class FormSubmit extends RegisterInitEvent{}

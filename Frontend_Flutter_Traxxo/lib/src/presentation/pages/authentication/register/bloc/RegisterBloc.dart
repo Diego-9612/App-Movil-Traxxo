@@ -1,15 +1,23 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transporte_carga_flutter/src/domain/useCases/auth/AuthUseCases.dart';
+import 'package:transporte_carga_flutter/src/domain/utils/Resource.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/register/bloc/RegisterEvent.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/register/bloc/RegisterState.dart';
 import 'package:transporte_carga_flutter/src/presentation/utils/BlocFormItem.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
+
+  AuthUseCases authUseCases;
   final formKey = GlobalKey<FormState>();
 
-  RegisterBloc() : super(RegisterState()) {
+  RegisterBloc(this.authUseCases) : super(RegisterState()) {
     on<RegisterInitEvent>((event, emit) {
       emit(state.copyWith(formKey: formKey));
+    });
+
+    on<SaveUserSession>((event, emit) async {
+      await authUseCases.saveUserSession.run(event.authResponse);
     });
 
     on<NameChanged>((event, emit) {
@@ -78,12 +86,25 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       );
     });
 
-    on<FormSubmit>((event, emit) {
+    on<FormSubmit>((event, emit) async {
       print('Name: ${state.name.value}');
       print('LastName: ${state.lastname.value}');
       print('email: ${state.email.value}');
       print('phone: ${state.phone.value}');
       print('password: ${state.password.value}');
+      emit(
+        state.copyWith(
+          response: Loading(),
+          formKey: formKey
+        )
+      );
+      Resource response = await authUseCases.register.run(state.toUser());
+      emit(
+        state.copyWith(
+          response: response,
+          formKey: formKey
+        )
+      );
     });
 
     on<FormReset>((event, emit) {

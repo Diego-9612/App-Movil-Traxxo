@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:transporte_carga_flutter/src/data/dataSource/remote/services/AuthService.dart';
+import 'package:transporte_carga_flutter/src/domain/models/AuthResponse.dart';
+import 'package:transporte_carga_flutter/src/domain/useCases/auth/AuthUseCases.dart';
 import 'package:transporte_carga_flutter/src/domain/utils/Resource.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/login/bloc/LoginEvent.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/login/bloc/LoginState.dart';
 import 'package:transporte_carga_flutter/src/presentation/utils/BlocFormItem.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  
+  AuthUseCases authUseCases;
   final formKey = GlobalKey<FormState>();
-  AuthService authService = AuthService();
+  
 
-  LoginBloc() : super(LoginState()) {
-    on<LoginInitEvent>((event, emit) {
+  LoginBloc(this.authUseCases) : super(LoginState()) {
+    
+    on<LoginInitEvent>((event, emit) async {
+      AuthResponse? authResponse = await authUseCases.getUserSession.run();
+      print('Auth Response Session: ${authResponse?.toJson()}');
       emit(state.copyWith(formKey: formKey));
+      if(authResponse != null){
+        emit(
+          state.copyWith(
+            response: Success(authResponse),
+            formKey: formKey
+          )
+        );
+      }
     });
 
     on<EmailChanged>((event, emit) {
@@ -25,6 +39,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           formKey: formKey,
         ),
       );
+    });
+
+    on<SaveUserSession>((event, emit) async {
+      await authUseCases.saveUserSession.run(event.authResponse);
     });
 
     on<PasswordChanged>((event, emit) {
@@ -47,19 +65,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<FormSubmit>((event, emit) async {
       print('Email: ${state.email.value}');
       print('Contraseña: ${state.password.value}');
-      emit(
-        state.copyWith(
-          response: Loading(),
-          formKey: formKey
-        )
+      emit(state.copyWith(response: Loading(), formKey: formKey));
+      Resource response = await authUseCases.login.run(
+        state.email.value,
+        state.password.value,
       );
-      Resource response = await authService.login(state.email.value, state.password.value);
-      emit(
-        state.copyWith(
-          response: response,
-          formKey: formKey
-        )
-      );
+      emit(state.copyWith(response: response, formKey: formKey));
     });
   }
 }
