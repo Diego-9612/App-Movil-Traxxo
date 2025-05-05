@@ -7,6 +7,7 @@ import 'package:transporte_carga_flutter/src/presentation/pages/authentication/l
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/recover_account/RecoverAccountPage.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/register/RegisterPage.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/client/home/ClientHomePage.dart';
+import 'package:transporte_carga_flutter/src/presentation/pages/profile/update/ProfileUpdatePage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           'register': (BuildContext context) => RegisterPage(),
           'recover': (BuildContext context) => RecoverAccountPage(),
           'client/home': (BuildContext context) => ClientHomePage(),
+          'profile/update': (BuildContext context) => ProfileUpdatePage(),
         },
       ),
     );

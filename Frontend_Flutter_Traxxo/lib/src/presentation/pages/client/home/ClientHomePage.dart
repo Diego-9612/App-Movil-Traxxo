@@ -37,8 +37,8 @@ class _ClientHomePageState extends State<ClientHomePage> {
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
                       colors: [
-                        Color.fromARGB(255, 224, 181, 50), // amber[100]
-                        Color.fromARGB(106, 141, 148, 10),
+                        Color.fromARGB(255, 60, 60, 60),
+                        Color.fromARGB(106, 20, 20, 20),
                       ],
                     ),
                   ),

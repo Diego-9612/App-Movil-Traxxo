@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
 
   String text;
+  String? initialValue;
   Function(String text) onChanged;
   IconData icon;
   EdgeInsetsGeometry margin;
   String? Function(String?)? validator;
+  Color backgroundColor;
 
   CustomTextField({
     super.key,
@@ -15,6 +17,8 @@ class CustomTextField extends StatelessWidget {
     required this.onChanged,
     this.margin = const EdgeInsets.only(top: 15, left: 5, right: 5),
     this.validator,
+    this.backgroundColor = Colors.white,
+    this.initialValue,
   });
 
   @override
@@ -23,12 +27,13 @@ class CustomTextField extends StatelessWidget {
       height: 50,
       margin: margin,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: backgroundColor,
       ),
       child: TextFormField(
         onChanged: (text){
           onChanged(text);
         },
+        initialValue: initialValue,
         validator: validator,
         decoration: InputDecoration(
           label: Text(text),

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:transporte_carga_flutter/src/domain/models/user.dart';
+import 'package:transporte_carga_flutter/src/domain/models/User.dart';
 
 AuthResponse authResponseFromJson(String str) => AuthResponse.fromJson(json.decode(str));
 
