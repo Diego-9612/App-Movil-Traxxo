@@ -46,7 +46,7 @@ class ProfileInfoContent extends StatelessWidget {
                   child: FadeInImage.assetNetwork(
                     placeholder: 'assets/img/user_image.png',
                     image:
-                        'assets/img/user_image.png',
+                        'https://static.vecteezy.com/system/resources/previews/000/439/863/non_2x/vector-users-icon.jpg',
                     fit: BoxFit.cover,
                     fadeInDuration: Duration(seconds: 1),
                   ),

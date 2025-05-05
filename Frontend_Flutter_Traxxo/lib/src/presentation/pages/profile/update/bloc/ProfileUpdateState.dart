@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:transporte_carga_flutter/src/domain/models/User.dart';
@@ -10,6 +12,7 @@ class ProfileUpdateState extends Equatable {
   final BlocFormItem lastname;
   final BlocFormItem phone;
   final Resource? response;
+  final File? image;
   final GlobalKey<FormState>? formKey;
 
   ProfileUpdateState({
@@ -18,6 +21,7 @@ class ProfileUpdateState extends Equatable {
     this.lastname = const BlocFormItem(error: 'Ingrese el apellido'),
     this.phone = const BlocFormItem(error: 'Ingrese el teléfono'),
     this.response,
+    this.image,
     this.formKey,
   });
 
@@ -29,7 +33,8 @@ class ProfileUpdateState extends Equatable {
     BlocFormItem? name,
     BlocFormItem? lastname,
     BlocFormItem? phone,
-    final Resource? response,
+    Resource? response,
+    File? image,
     GlobalKey<FormState>? formKey,
   }) {
     return ProfileUpdateState(
@@ -38,10 +43,11 @@ class ProfileUpdateState extends Equatable {
       lastname: lastname ?? this.lastname,
       phone: phone ?? this.phone,
       response: response,
+      image: image ?? this.image,
       formKey: formKey ?? this.formKey,
     );
   }
 
   @override
-  List<Object?> get props => [name, lastname, phone, response, formKey];
+  List<Object?> get props => [id, name, lastname, phone, response, image ,formKey];
 }

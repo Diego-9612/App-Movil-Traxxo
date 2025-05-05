@@ -5,6 +5,7 @@ import 'package:transporte_carga_flutter/src/presentation/pages/profile/update/b
 import 'package:transporte_carga_flutter/src/presentation/pages/profile/update/bloc/ProfileUpdateBloc.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/profile/update/bloc/ProfileUpdateEvent.dart';
 import 'package:transporte_carga_flutter/src/presentation/utils/BlocFormItem.dart';
+import 'package:transporte_carga_flutter/src/presentation/utils/GalleryOrPhotoDialog.dart';
 import 'package:transporte_carga_flutter/src/presentation/widgets/CustomIconBack.dart';
 import 'package:transporte_carga_flutter/src/presentation/widgets/CustomTextField.dart';
 
@@ -35,6 +36,37 @@ class ProfileUpdateContent extends StatelessWidget {
     );
   }
 
+  Widget _imageUser(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        GalleryOrPhotoDialog(
+          context,
+          () => {context.read<ProfileUpdateBloc>().add(PickImage())},
+          () => {context.read<ProfileUpdateBloc>().add(TakePhoto())},
+        );
+      },
+      child: Container(
+        width: 100,
+        margin: EdgeInsets.only(top: 20, bottom: 15),
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: ClipOval(
+            child:
+                state.image != null
+                    ? Image.file(state.image!, fit: BoxFit.cover)
+                    : FadeInImage.assetNetwork(
+                      placeholder: 'assets/img/user_image.png',
+                      image:
+                          'https://static.vecteezy.com/system/resources/previews/000/439/863/non_2x/vector-users-icon.jpg',
+                      fit: BoxFit.cover,
+                      fadeInDuration: Duration(seconds: 1),
+                    ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _cardUserInfo(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(left: 20, right: 20, top: 150),
@@ -45,21 +77,7 @@ class ProfileUpdateContent extends StatelessWidget {
         surfaceTintColor: Colors.white,
         child: Column(
           children: [
-            Container(
-              width: 100,
-              margin: EdgeInsets.only(top: 20, bottom: 15),
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: ClipOval(
-                  child: FadeInImage.assetNetwork(
-                    placeholder: 'assets/img/user_image.png',
-                    image: 'assets/img/user_image.png',
-                    fit: BoxFit.cover,
-                    fadeInDuration: Duration(seconds: 1),
-                  ),
-                ),
-              ),
-            ),
+            _imageUser(context),
             CustomTextField(
               text: 'Nombre',
               icon: Icons.person,
@@ -118,8 +136,7 @@ class ProfileUpdateContent extends StatelessWidget {
           if (state.formKey!.currentState!.validate()) {
             context.read<ProfileUpdateBloc>().add(FormSubmit());
           }
-        }
-        else{
+        } else {
           context.read<ProfileUpdateBloc>().add(FormSubmit());
         }
       },

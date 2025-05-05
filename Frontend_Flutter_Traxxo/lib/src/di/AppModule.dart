@@ -3,7 +3,7 @@ import 'package:transporte_carga_flutter/src/data/dataSource/local/SharefPref.da
 import 'package:transporte_carga_flutter/src/data/dataSource/remote/services/AuthService.dart';
 import 'package:transporte_carga_flutter/src/data/dataSource/remote/services/UsersService.dart';
 import 'package:transporte_carga_flutter/src/data/repository/AuthRepositoryImpl.dart';
-import 'package:transporte_carga_flutter/src/data/repository/UsersReositoryImpl.dart';
+import 'package:transporte_carga_flutter/src/data/repository/UsersRepositoryImpl.dart';
 import 'package:transporte_carga_flutter/src/domain/models/AuthResponse.dart';
 import 'package:transporte_carga_flutter/src/domain/repository/AuthRepository.dart';
 import 'package:transporte_carga_flutter/src/domain/repository/UsersRepository.dart';

@@ -28,4 +28,8 @@ class UpdateUserSession extends ProfileUpdateEvent{
   UpdateUserSession({required this.user});
 }
 
+class PickImage extends ProfileUpdateEvent{}
+
+class TakePhoto extends ProfileUpdateEvent{}
+
 class FormSubmit extends ProfileUpdateEvent{}
