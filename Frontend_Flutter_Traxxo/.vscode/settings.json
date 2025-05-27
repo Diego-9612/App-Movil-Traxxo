@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "activada",
         "Actualizacion",
         "appbar",
         "Authrepositoryimpl",
@@ -10,22 +11,30 @@
         "Confirma",
         "Correo",
         "cupertino",
+        "destino",
         "EDITAR",
         "Exitosa",
         "exitoso",
         "fluttertoast",
         "fotos",
         "galeria",
+        "geolocator",
         "logotraxxo",
+        "Lugar",
         "Mapa",
         "Olvidaste",
+        "otorgado",
+        "permanente",
+        "permiso",
         "prefs",
         "Recupera",
         "Registrate",
         "requiere",
         "SEGURA",
+        "seperated",
         "Sesión",
         "Sharef",
+        "Srqb",
         "Subproject",
         "subprojects",
         "telefonico",
@@ -35,6 +44,8 @@
         "tienes",
         "transporte",
         "TRAXXO",
-        "valido"
-    ]
+        "valido",
+        "zpin"
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

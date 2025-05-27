@@ -20,10 +20,14 @@ import 'package:transporte_carga_flutter/src/data/dataSource/remote/services/Use
 import 'package:transporte_carga_flutter/src/di/AppModule.dart' as _i644;
 import 'package:transporte_carga_flutter/src/domain/repository/AuthRepository.dart'
     as _i557;
+import 'package:transporte_carga_flutter/src/domain/repository/GeolocatorRepository.dart'
+    as _i129;
 import 'package:transporte_carga_flutter/src/domain/repository/UsersRepository.dart'
     as _i88;
 import 'package:transporte_carga_flutter/src/domain/useCases/auth/AuthUseCases.dart'
     as _i714;
+import 'package:transporte_carga_flutter/src/domain/useCases/geolocator/GeolocatorUseCases.dart'
+    as _i830;
 import 'package:transporte_carga_flutter/src/domain/useCases/users/UsersUseCases.dart'
     as _i1020;
 
@@ -41,8 +45,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i578.UsersService>(() => appModule.usersService);
     gh.factory<_i557.AuthRepository>(() => appModule.authRepository);
     gh.factory<_i88.UsersRepository>(() => appModule.usersRepository);
+    gh.factory<_i129.GeolocatorRepository>(
+      () => appModule.geolocatorRepository,
+    );
     gh.factory<_i714.AuthUseCases>(() => appModule.authUseCases);
     gh.factory<_i1020.UsersUseCases>(() => appModule.usersUseCases);
+    gh.factory<_i830.GeolocatorUseCases>(() => appModule.geolocatorUseCases);
     return this;
   }
 }

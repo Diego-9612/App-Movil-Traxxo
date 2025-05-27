@@ -1,12 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transporte_carga_flutter/injection.dart';
 import 'package:transporte_carga_flutter/src/domain/useCases/auth/AuthUseCases.dart';
+import 'package:transporte_carga_flutter/src/domain/useCases/geolocator/GeolocatorUseCases.dart';
 import 'package:transporte_carga_flutter/src/domain/useCases/users/UsersUseCases.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/login/bloc/LoginBloc.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/login/bloc/LoginEvent.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/register/bloc/RegisterBloc.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/authentication/register/bloc/RegisterEvent.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/client/home/bloc/ClientHomeBloc.dart';
+import 'package:transporte_carga_flutter/src/presentation/pages/client/mapSeeker/bloc/ClientMapSeekerBloc.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/profile/info/bloc/ProfileInfoBloc.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/profile/info/bloc/ProfileInfoEvent.dart';
 import 'package:transporte_carga_flutter/src/presentation/pages/profile/update/bloc/ProfileUpdateBloc.dart';
@@ -35,5 +37,11 @@ List<BlocProvider> blocProviders = [
           locator<UsersUseCases>(),
           locator<AuthUseCases>(),
         ),
+  ),
+
+  BlocProvider<ClientMapSeekerBloc>(
+    create:
+        (context) => ClientMapSeekerBloc(
+          locator<GeolocatorUseCases>())
   ),
 ];

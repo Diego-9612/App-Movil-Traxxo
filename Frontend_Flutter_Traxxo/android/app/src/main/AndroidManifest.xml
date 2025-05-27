@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <application
         android:label="transporte_carga_flutter"
         android:name="${applicationName}"
@@ -32,7 +35,7 @@
             android:value="2" />
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBJXSCF6Q18FcNLpDfNkzgw3AylU23-crg"/>
+            android:value="AIzaSyC2yTTw8jTbm9SZjouoJ8HViPuw9kRT31U"/>
 
     </application>
     <!-- Required to query activities that can process text, see:
