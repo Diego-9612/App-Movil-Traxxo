@@ -75,7 +75,7 @@ Toda la documentación está disponible en la [Wiki del proyecto](https://github
 
 ## 👥 Contribuciones
 
-Pr el momento no se aceptan contribuciones 
+Por el momento no se aceptan contribuciones 
 
 ---
 
@@ -88,5 +88,5 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENS
 ## 📬 Contacto
 
 **Desarrollador Principal:** Diego Guerrero
-**Correo:** [diegoguerrerodev@gmail.com](mailto:diegoguerrero@umariana.edu.co)
+**Correo:** [diegoguerrero@umariana.edu.co](mailto:diegoguerrero@umariana.edu.co)
 **Repositorio:** [GitHub - App-Movil-Traxxo](https://github.com/Diego-9612/App-Movil-Traxxo)
